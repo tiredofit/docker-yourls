@@ -1,0 +1,64 @@
+#!/usr/bin/with-contenv bash
+
+for s in /assets/functions/*; do source $s; done
+PROCESS_NAME="wordpress"
+
+sanity_db mariadb
+sanity_var SITE_URL "Site URL"
+
+db_ready mariadb
+
+DEBUG=${DEBUG:-"false"}
+DB_PREFIX=${DB_PREFIX:-"yourls_"}
+
+### Check to see if this is a new install, if yes download Wordpress and other pieces...
+if [ ! -f ${NGINX_WEBROOT}/yourls-loader.php ] ; then
+   print_info "YOURLS not found, Downloading and setting up"
+   git clone https://$GIT_USER:$GIT_PASS@https://git.selfdesign.org/web/yourls/ ${NGINX_WEBROOT}
+   print_notice "[yourls] Insalled... Please visit the website and finish configuration.."
+   chown nginx:www-data ${NGINX_WEBROOT}
+
+fi
+
+sanity_var ADMIN_USER "Admin User"
+sanity_var ADMIN_PASS "Admin Password"
+
+if [ -z "$SITE_NAME" ]; then
+    SITE_NAME="https://$SITE_URL"
+fi
+
+if [ ! -f ${NGINX_WEBROOT}/user/config.php ] ; then
+  cat >"${NGINX_WEBROOT}/user/config.php" <<EOL
+<?php
+define( 'YOURLS_DB_USER', '$DB_USER' );
+define( 'YOURLS_DB_PASS', '$DB_PASS' );
+define( 'YOURLS_DB_NAME', '$DB_NAME' );
+define( 'YOURLS_DB_HOST', '$DB_HOST' );
+define( 'YOURLS_DB_PREFIX', '$DB_PREFIX' );
+define( 'YOURLS_SITE', '$SITE_NAME' );
+define( 'YOURLS_HOURS_OFFSET', -8 );
+define( 'YOURLS_LANG', '' );
+define( 'YOURLS_UNIQUE_URLS', true );
+define( 'YOURLS_PRIVATE', true );
+\$yourls_user_passwords = array(
+       '$ADMIN_USER' => '$ADMIN_PASS',
+        );
+define( 'YOURLS_DEBUG', $DEBUG );
+define( 'YOURLS_URL_CONVERT', 36 );
+\$yourls_reserved_URL = array(
+        'reserved',
+);
+EOL
+else
+  sed -i "/YOURLS_DB_USER/ c\define( 'YOURLS_DB_USER', '$DB_USER' );" ${NGINX_WEBROOT}/user/config.php
+  sed -i "/YOURLS_DB_PASS/ c\define( 'YOURLS_DB_PASS', '$DB_PASS' );" ${NGINX_WEBROOT}/user/config.php
+  sed -i "/YOURLS_DB_NAME/ c\define( 'YOURLS_DB_NAME', '$DB_NAME' );" ${NGINX_WEBROOT}/user/config.php
+  sed -i "/YOURLS_DB_HOST/ c\define( 'YOURLS_DB_HOST', '$DB_HOST' );" ${NGINX_WEBROOT}/user/config.php
+  sed -i "/YOURLS_DEBUG/ c\define( 'YOURLS_DEBUG', '$DEBUG' );" ${NGINX_WEBROOT}/user/config.php
+  sed -i "/YOURLS_SITE/ c\define( 'YOURLS_SITE', '$SITE_NAME' );" ${NGINX_WEBROOT}/user/config.php
+fi
+
+### Force Reset Permissions for Security
+chown -R nginx:www-data ${NGINX_WEBROOT}
+
+liftoff
