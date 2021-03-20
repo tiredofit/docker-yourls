@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+DEBUG=${DEBUG:-"false"}
+DB_PREFIX=${DB_PREFIX:-"yourls_"}
+SITE_NAME=${SITE_NAME:-"https://${SITE_URL}"}

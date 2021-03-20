@@ -1,6 +1,6 @@
 # hub.docker.com/r/tiredofit/yourls
 
-# Introduction
+## Introduction
 
 This will build a container for YOURLS, a URL Link shortener.
 
@@ -19,11 +19,11 @@ Additional components inside the image are: NginX, PHP7 w/APC, OPCache
 
 [Changelog](CHANGELOG.md)
 
-# Authors
+## Authors
 
 - [Dave Conroy](dave at tiredofit dot ca)
 
-# Table of Contents
+## Table of Contents
 
 - [Introduction](#introduction)
     - [Changelog](CHANGELOG.md)
@@ -38,12 +38,12 @@ Additional components inside the image are: NginX, PHP7 w/APC, OPCache
     - [Shell Access](#shell-access)
    - [References](#references)
 
-# Prerequisites
+## Prerequisites
 
 This container requires the use of an external MariaDB database container.
 
 
-# Installation
+## Installation
 
 Automated builds of the image are available on [Registry](https://hub.docker.com/r/tiredofit/yourls) and is the recommended method of installation.
 
@@ -52,7 +52,7 @@ Automated builds of the image are available on [Registry](https://hub.docker.com
 docker pull hub.docker.com/r/tiredofit/yourls
 ```
 
-# Quick Start
+### Quick Start
 
 * The quickest way to get started is using [docker-compose](https://docs.docker.com/compose/). See the examples folder for a working [docker-compose.yml](examples/docker-compose.yml) that can be modified for development or production use.
 
@@ -61,7 +61,7 @@ docker pull hub.docker.com/r/tiredofit/yourls
 
 
 
-# Configuration
+## Configuration
 
 ### Data-Volumes
 
@@ -102,8 +102,8 @@ The following ports are exposed.
 |-----------|-------------|
 | 80        | HTTP        |
 
-# Maintenance
-#### Shell Access
+## Maintenance
+### Shell Access
 
 For debugging and maintenance purposes you may want access the containers shell. 
 
@@ -111,7 +111,7 @@ For debugging and maintenance purposes you may want access the containers shell.
 docker exec -it (whatever your container name is e.g. yourls) bash
 ```
 
-# References
+## References
 
 * https://yourls.org
 

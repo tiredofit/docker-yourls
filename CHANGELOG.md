@@ -1,3 +1,11 @@
+## 3.0.0 2021-03-20 <dave at tiredofit dot ca>
+
+   ### Added
+      - YOURLS 1.8.1
+      - PHP 8.0
+      - Image rewritten to support seperate data folder for volatile information (themes/plugins/config) allowing for easy upgrades
+
+
 ## 2.5.1 2020-01-06 <dave at tiredofit dot ca>
 
    ### Changed
