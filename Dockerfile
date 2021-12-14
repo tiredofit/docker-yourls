@@ -1,5 +1,5 @@
-FROM tiredofit/nginx-php-fpm:8.0
-LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
+FROM docker.io/tiredofit/nginx-php-fpm:8.0
+LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
 ENV YOURLS_VERSION=1.8.1 \
     PHP_ENABLE_CREATE_SAMPLE_PHP=FALSE \
@@ -7,7 +7,7 @@ ENV YOURLS_VERSION=1.8.1 \
     PHP_ENABLE_LDAP=TRUE \
     PHP_ENABLE_MYSQLI=TRUE \
     NGINX_WEBROOT="/www/yourls" \
-    ZABBIX_HOSTNAME=yourls-app
+    CONTAINER_NAME=yourls-app
 
 ### Dependency Installation
 RUN set -x && \

@@ -1,6 +1,6 @@
-# hub.docker.com/r/tiredofit/yourls
+# github.com/tiredofit/docker-yourls
 
-## Introduction
+## About
 
 This will build a container for YOURLS, a URL Link shortener.
 
@@ -10,7 +10,7 @@ This Container uses Alpine:3.13 as a base.
 
 [Changelog](CHANGELOG.md)
 
-## Authors
+## Maintainer
 
 - [Dave Conroy](dave at tiredofit dot ca)
 
@@ -30,7 +30,7 @@ This Container uses Alpine:3.13 as a base.
   - [Shell Access](#shell-access)
 - [References](#references)
 
-## Prerequisites
+## Prerequisites and Assumptions
 
 This container requires the use of an external MariaDB database container.
 
@@ -55,7 +55,7 @@ docker pull hub.docker.com/r/tiredofit/yourls
 
 ## Configuration
 
-### Data-Volumes
+### Persistent Storage
 
 The following directories are used for configuration and can be mapped for persistent storage.
 
