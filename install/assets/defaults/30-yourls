@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 DEBUG=${DEBUG:-"false"}
 DB_PREFIX=${DB_PREFIX:-"yourls_"}

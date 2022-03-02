@@ -7,7 +7,8 @@ ENV YOURLS_VERSION=1.8.1 \
     PHP_ENABLE_LDAP=TRUE \
     PHP_ENABLE_MYSQLI=TRUE \
     NGINX_WEBROOT="/www/yourls" \
-    CONTAINER_NAME=yourls-app
+    IMAGE_NAME="tiredofit/yourls" \
+    IMAGE_REPO_URL="https://github.com/tiredofit/docker-yourls/"
 
 ### Dependency Installation
 RUN set -x && \
