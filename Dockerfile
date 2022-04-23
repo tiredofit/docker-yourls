@@ -1,7 +1,7 @@
 FROM docker.io/tiredofit/nginx-php-fpm:8.0
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ENV YOURLS_VERSION=1.8.1 \
+ENV YOURLS_VERSION=1.9 \
     PHP_ENABLE_CREATE_SAMPLE_PHP=FALSE \
     PHP_ENABLE_CURL=TRUE \
     PHP_ENABLE_LDAP=TRUE \
