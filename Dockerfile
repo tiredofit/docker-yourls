@@ -1,7 +1,7 @@
 FROM docker.io/tiredofit/nginx-php-fpm:8.0
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ENV YOURLS_VERSION=1.9 \
+ENV YOURLS_VERSION=1.9.1 \
     PHP_ENABLE_CREATE_SAMPLE_PHP=FALSE \
     PHP_ENABLE_CURL=TRUE \
     PHP_ENABLE_LDAP=TRUE \
@@ -15,7 +15,7 @@ RUN set -x && \
     apk update && \
     apk upgrade && \
     apk add -t .yourls-run-deps \
-		            openldap-clients \
+                    openldap-clients \
                     sed \
                     && \
     \
