@@ -7,6 +7,7 @@ ENV YOURLS_VERSION=1.9.1 \
     PHP_ENABLE_LDAP=TRUE \
     PHP_ENABLE_MYSQLI=TRUE \
     NGINX_WEBROOT="/www/yourls" \
+    NGINX_SITE_ENABLED="yourls" \
     IMAGE_NAME="tiredofit/yourls" \
     IMAGE_REPO_URL="https://github.com/tiredofit/docker-yourls/"
 
