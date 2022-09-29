@@ -29,7 +29,7 @@ services:
 
       - SITE_NAME=sitename.com
       - ADMIN_USER=admin
-      - ADMIN_PASS=selfdesign
+      - ADMIN_PASS=yourls
 
       - DEBUG=false
     networks:
@@ -42,7 +42,6 @@ services:
     container_name: yourls-db
     volumes:
       - ./db:/var/lib/mysql
-      - /etc/localtime:/etc/localtime:ro
     environment:
       - ROOT_PASS=password
       - DB_NAME=yourls
@@ -66,9 +65,8 @@ services:
       - DB_PASS=userpassword
       - DB_TYPE=mariadb
       - DB_DUMP_FREQ=1440
-      #- DB_DUMP_BEGIN=0000
+      - DB_DUMP_BEGIN=0000
       - DB_CLEANUP_TIME=8640
-      - COMPRESSION=BZ
     networks:
       - services
     restart: always
