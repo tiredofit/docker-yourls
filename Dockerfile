@@ -24,4 +24,4 @@ RUN set -x && \
     curl -ssL https://github.com/YOURLS/YOURLS/archive/refs/tags/${YOURLS_VERSION}.tar.gz | tar xvfz - --strip 1 -C /assets/install/ && \
     rm -rf /var/cache/apk/*
 
-ADD install/ /
+COPY install/ /
