@@ -37,7 +37,7 @@ This container requires the use of an external MariaDB database container.
 
 ## Installation
 
-Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/yourls) and is the recommended method of installation.
+Automated builds of the image are available on [Docker Hub](https://hub.docker.com/r/tiredofit/yourls)
 
 
 ```bash
