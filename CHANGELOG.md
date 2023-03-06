@@ -1,3 +1,11 @@
+## 3.0.6 2023-03-05 <dave at tiredofit dot ca>
+
+   ### Added
+      - YOURLS 1.9.2
+      - PHP 8.2
+      - Dockerfile modernization
+
+
 ## 3.0.5 2022-10-05 <dave at tiredofit dot ca>
 
    ### Changed

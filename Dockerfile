@@ -1,7 +1,10 @@
-FROM docker.io/tiredofit/nginx-php-fpm:8.0
-LABEL maintainer="Dave Conroy (github.com/tiredofit)"
+ARG PHP_BASE=8.2
+ARG DISTRO="alpine"
 
-ENV YOURLS_VERSION=1.9.1 \
+FROM docker.io/tiredofit/nginx-php-fpm:${PHP_BASE}-${DISTRO}
+LABEL maintainer="Dave Conroy (github.com/tiredofit)"
+ENV YOURLS_VERSION=1.9.2 \
+
     PHP_ENABLE_CREATE_SAMPLE_PHP=FALSE \
     PHP_ENABLE_CURL=TRUE \
     PHP_ENABLE_LDAP=TRUE \
@@ -12,16 +15,17 @@ ENV YOURLS_VERSION=1.9.1 \
     IMAGE_REPO_URL="https://github.com/tiredofit/docker-yourls/"
 
 ### Dependency Installation
-RUN set -x && \
-    apk update && \
-    apk upgrade && \
-    apk add -t .yourls-run-deps \
+RUN source /assets/functions/00-container && \
+    set -x && \
+    package update && \
+    package upgrade && \
+    package install .yourls-run-deps \
                     openldap-clients \
                     sed \
                     && \
     \
     mkdir -p /assets/install && \
     curl -ssL https://github.com/YOURLS/YOURLS/archive/refs/tags/${YOURLS_VERSION}.tar.gz | tar xvfz - --strip 1 -C /assets/install/ && \
-    rm -rf /var/cache/apk/*
+    package cleanup
 
 COPY install/ /
