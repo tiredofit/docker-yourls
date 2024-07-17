@@ -1,3 +1,9 @@
+## 3.0.7 2024-07-17 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Fix issue with time zone offset
+
+
 ## 3.0.6 2023-03-05 <dave at tiredofit dot ca>
 
    ### Added

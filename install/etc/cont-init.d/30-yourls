@@ -35,7 +35,7 @@ else
 fi
 
 if [ ! -f "${config_file}" ] ; then
-  sudo -u ${NGINX_USER} cat > "${config_file}" <<EOL
+  cat <<EOL | silent sudo -u "${NGINX_USER}" tee "${config_file}"
 <?php
 define( 'YOURLS_DB_USER', '${DB_USER}' );
 define( 'YOURLS_DB_PASS', '${DB_PASS}' );
@@ -43,7 +43,7 @@ define( 'YOURLS_DB_NAME', '${DB_NAME}' );
 define( 'YOURLS_DB_HOST', '${DB_HOST}' );
 define( 'YOURLS_DB_PREFIX', '${DB_PREFIX}' );
 define( 'YOURLS_SITE', '${SITE_NAME}' );
-define( 'YOURLS_HOURS_OFFSET', $(date +%z) | sed "s|0||g") );
+define( 'YOURLS_HOURS_OFFSET', $(date +%z | sed "s|0||g") );
 define( 'YOURLS_LANG', '' );
 define( 'YOURLS_UNIQUE_URLS', true );
 define( 'YOURLS_PRIVATE', true );
@@ -57,12 +57,14 @@ define( 'YOURLS_URL_CONVERT', 36 );
 );
 EOL
 else
-  sudo -u ${NGINX_USER} sed -i --follow-symlinks "/YOURLS_DB_USER/ c\define( 'YOURLS_DB_USER', '$DB_USER' );" "${config_file}"
-  sudo -u ${NGINX_USER} sed -i --follow-symlinks "/YOURLS_DB_PASS/ c\define( 'YOURLS_DB_PASS', '$DB_PASS' );" "${config_file}"
-  sudo -u ${NGINX_USER} sed -i --follow-symlinks "/YOURLS_DB_NAME/ c\define( 'YOURLS_DB_NAME', '$DB_NAME' );" "${config_file}"
-  sudo -u ${NGINX_USER} sed -i --follow-symlinks "/YOURLS_DB_HOST/ c\define( 'YOURLS_DB_HOST', '$DB_HOST' );" "${config_file}"
-  sudo -u ${NGINX_USER} sed -i --follow-symlinks "/YOURLS_DEBUG/ c\define( 'YOURLS_DEBUG', $DEBUG );" "${config_file}"
-  sudo -u ${NGINX_USER} sed -i --follow-symlinks "/YOURLS_SITE/ c\define( 'YOURLS_SITE', '$SITE_NAME' );" "${config_file}"
+    sudo -u "${NGINX_USER}" sed -i --follow-symlinks \
+                                -e "/YOURLS_DB_USER/ c\define( 'YOURLS_DB_USER', '$DB_USER' );" \
+                                -e "/YOURLS_DB_PASS/ c\define( 'YOURLS_DB_PASS', '$DB_PASS' );" \
+                                -e "/YOURLS_DB_NAME/ c\define( 'YOURLS_DB_NAME', '$DB_NAME' );" \
+                                -e "/YOURLS_DB_HOST/ c\define( 'YOURLS_DB_HOST', '$DB_HOST' );" \
+                                -e "/YOURLS_DEBUG/ c\define( 'YOURLS_DEBUG', $DEBUG );" \
+                                -e "/YOURLS_SITE/ c\define( 'YOURLS_SITE', '$SITE_NAME' );" \
+                            "${config_file}"
 fi
 
 custom_files "${CONTAINER_CUSTOM_PATH}" "${NGINX_WEBROOT}" "${NGINX_USER}" "${NGINX_GROUP}"
