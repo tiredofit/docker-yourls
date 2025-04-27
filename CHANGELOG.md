@@ -1,3 +1,10 @@
+## 3.0.8 2025-04-27 <dave at tiredofit dot ca>
+
+   ### Added
+      - PHP 8.3 Base
+      - YOURLS 1.10.1
+
+
 ## 3.0.7 2024-07-17 <dave at tiredofit dot ca>
 
    ### Changed

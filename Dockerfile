@@ -1,9 +1,9 @@
-ARG PHP_BASE=8.2
+ARG PHP_BASE=8.3
 ARG DISTRO="alpine"
 
 FROM docker.io/tiredofit/nginx-php-fpm:${PHP_BASE}-${DISTRO}
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
-ENV YOURLS_VERSION=1.9.2 \
+ENV YOURLS_VERSION=1.10.1 \
 
     PHP_ENABLE_CREATE_SAMPLE_PHP=FALSE \
     PHP_ENABLE_CURL=TRUE \
